@@ -1,0 +1,1515 @@
+*{margin:0;padding:0;border:0;outline: none;background: transparent;}
+img, a, video{display: block;}
+p a{ display: inline-block;}
+li{list-style-type: none;}
+
+@mixin mv( $media: 47em){
+    @media screen and (max-width: $media){
+        @content;
+    }
+}
+
+@font-face {
+    font-family: 'Walsheim';
+    src: url(/font/GT\ Walsheim\ Medium.ttf);
+}
+@font-face {
+    font-family: 'Walsheim-regular';
+    src: url(/font/GT\ Walsheim\ Regular.ttf);
+}
+@font-face {
+    font-family: 'Walsheim-bold';
+    src: url(/font/GT\ Walsheim\-Bold.otf);
+}
+@font-face {
+    font-family: 'Knockout';
+    src: url(/font/Knockout\ Regular.otf);
+}
+html{
+    scroll-behavior: smooth;
+}
+:root{
+    --start-rotate-hourMAD:1deg;
+    --end-rotate-hourMAD: 360deg;
+    --start-rotate-hourNY:1deg;
+    --end-rotate-hourNY: 360deg;
+    --start-rotate-hourMDE:1deg;
+    --end-rotate-hourMDE: 360deg;
+    --start-rotate-min: 1deg;
+    --end-rotate-min: 360deg;
+    --start-rotate-seg: 1deg;
+    --end-rotate-seg: 360deg;
+}
+a, button{
+    color: #f1f5f7;
+    text-decoration: none;
+    text-transform: uppercase;
+    text-align: center;
+    font-weight: 500;
+    font-family: "Walsheim";
+    font-size: 14px;
+    letter-spacing: 2px;
+}
+.header{
+
+    $header: &;
+
+    width: 100%;
+    height: 140px;
+    position: fixed;
+    display: flex;
+    justify-content: space-between;
+    line-height: 140px;
+    z-index: 1;
+
+    &--section-services{
+        color: #082c4c;
+
+        #{$header}__link{
+            color: #082c4c;
+        }
+        #{$header}__about{
+            color: #082c4c;
+        }
+        #{$header}__logo--white{
+            opacity: 0;
+        }
+        #{$header}__logo--dark{
+            opacity: 1;
+        }
+        #{$header}__bun{
+            background: #082c4c;
+        }
+        #{$header}__menu-text{
+            color: #082c4c;
+        }
+    }
+
+    &__logo-wrapper{
+        width: 140px;
+        height: inherit;
+        position: relative;
+
+        @include mv( $media:76em ) {
+            margin: 0 auto;
+        }
+        
+    }
+    &__logo{
+        width: 60px;
+        height: 100%;
+        position: absolute;
+        lefT: 50%;
+        margin-left: -30px;
+    }
+    &__nav{
+        width: 314px;
+        height: inherit;
+
+        @include mv( $media:76em ) {
+            display: none;
+        }
+        
+    }
+    &__list{
+        width: 100%;
+        height: inherit;
+        display: flex;
+    }
+    &__item{
+        width: 33.3%;
+        height: inherit;
+    }
+    
+    &__about{
+        width: 180px;
+        @include mv( $media:76em ) {
+            display: none;
+        }
+    }
+    &__burger{
+        display: none;
+
+        @include mv ( $media:76em ){
+            width: 80px;
+            // height: 20px;
+            // background: red;
+            display: flex;
+            flex-direction: row;
+            align-items: center;
+            justify-content: space-evenly;
+            cursor: pointer;
+        }
+    }
+    &__buns{
+        
+    }
+    &__bun{
+        display: block;
+        width: 10px;
+        height: 1px;
+        margin-bottom: 3px;
+        position: relative;
+        -moz-transition: background 0.5s;
+        -o-transition: background 0.5s;
+        -webkit-transition: background 0.5s;
+        transition: background 0.5s;
+        background: #f1f5f7;
+        z-index: 1;
+        transform-origin: 4px 0px;
+        margin-left: auto;
+        margin-right: auto;
+    }
+    &__menu-text{
+        font-family: 'Walsheim-regular';
+        font-size: 14px;
+        font-weight: 500;
+        color: #f1f5f7;
+    }
+    &__modal{
+        // display: none;
+    }
+
+    @include mv( $media:76em ) {
+        display: grid;
+        grid-template-columns: 1fr 1fr 1fr;
+        align-items: center;
+        padding: 0 1.3rem;
+        z-index: 2;
+
+        &__modal{
+            // display: block;
+        }
+    }
+}
+.modal{
+    $modal: &;
+    width: 100%;
+    height: 100vh;
+    background: #082c4c;
+    position: fixed;
+    top: 0;
+    left: 0;
+    z-index: 2;
+    pointer-events: none;
+    opacity: 0;
+
+    &--active{
+        opacity: 1;
+        pointer-events: auto;
+    }
+
+    &__title{
+        font-family: 'Walsheim-regular';
+        font-size: 1.2rem;
+        color:#f1f5f7;
+        line-height: 0;
+
+        &--services{
+            color: #082c4c;
+        }
+
+        @include mv( ) {
+            font-size: .8rem;
+        }
+    }
+    &__text{
+        font-family: 'Knockout';
+        font-size: 9rem;
+        font-weight: 300;
+        color:#f1f5f7;
+
+        &--services{
+            color: #082c4c;
+        }
+
+        @include mv( ) {
+            font-size: 5rem;
+        }
+    }
+
+    &__section{
+        height: 350px;
+        background: red;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        gap: 0;
+
+        &--dailybot{
+            background: #ec3856 url(../img/discobolus.png) no-repeat top center/600px;
+        }
+        &--services{
+            background: #f1f5f7 url(../img/enterprise_poseidon.png) no-repeat top center/600px;
+
+        }
+        &--products{
+            background: #25b5e9 url(../img/labs.png) no-repeat top center/600px;
+        }
+
+        @include mv( ) {
+            height: 250px;
+        }
+    }
+    
+    &__options{
+        height: 200px;
+
+        @include mv( ) {
+            height: 200px;
+        }
+    }
+    &__list{
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        gap: 4rem;
+
+        @include mv( ) {
+            gap: 1rem;
+        }
+    }
+    &__link:first-child{
+        display: flex;
+        cursor: pointer;
+    }
+
+    @include mv(  ) {
+        
+
+        &__modal{
+            // display: block;
+        }
+    }
+    
+    
+}
+.main{
+    width: 100%;
+    height: auto;
+    transition: all 0.5s ease;
+    scroll-behavior: smooth;
+    background: #082c4c;
+    overflow: hidden;
+    z-index: 1;
+
+    &--section1{background: #082c4c;}
+    &--section-dailybot{background: #ec3856;}
+    &--section-services{background: white;}
+    &--section-products{background: #25b5e9;}
+}
+.section-main{
+    width: 100%;
+    height: 100vh;
+    overflow: hidden;
+    &__container{
+        width: 1100px;
+        height:  96%;
+        background: salmon;
+        background: url(../img/estatual.png) no-repeat center center /980px;
+        position: absolute;
+        top: 2%;
+        left: 50%;    
+        margin-left: -550px;
+
+        @include mv( $media:76em ) {
+            width: 100%;
+            height: 81%;
+            margin-left: -50%;
+            background: url(../img/estatual.png) no-repeat center center/820px
+        }
+        @include mv( ) {
+            height: 65%;
+            background: url(../img/estatual.png) no-repeat center center/cover;
+            
+        }
+    }
+    &__title{
+        width: 60%;
+        font-size: 180px;    
+        font-weight: 300;
+        font-family: 'Knockout';
+        text-align: center;
+        margin: 0 auto;
+        color: white;
+        line-height: 140px;
+        letter-spacing: 2px;
+        padding-top: 22vh;
+
+        @include mv ( $media:76em){
+            width: 55%;
+            font-size: 150px;
+            line-height: 120px;
+        }
+        @include mv( ) {
+            width: 75%;
+            font-size: 5rem;
+            font-weight: 300;
+            line-height: 4rem;
+            padding-top: 16vh;
+            // background: red;
+        }
+    }
+    &__subtitle{
+        width: 66%;
+        font-weight: 300;
+        font-size: 20px;
+        margin: 2rem auto 0;
+        text-align: center;
+        color: white;
+        font-family: 'Walsheim-regular';
+
+        @include mv ( $media:76em){
+            width: 46%;
+            // background: red;
+        }
+        @include mv( ) {
+            width: 85%;
+            
+        }
+    }
+    @include mv( ) {
+        height: 70vh;
+        
+    }
+    
+}
+.section{
+    overflow: hidden;
+    &__container{
+        width: 60%;
+        height: 800px;
+        
+
+        display: flex;
+        
+        &--section-services{
+            display: flex;
+            flex-direction: row-reverse;
+
+            @include mv ( $media:76em ) {
+                flex-direction: row;
+            }
+        }
+
+        @include mv ( $media:76em ) {
+            width: 80%;
+        }
+        @include mv( ) {
+            width: 90%;
+            height: auto;
+        }
+    }
+    &__text, &__image-wrapper{
+        width: 50%;
+        height: 100%;
+
+    }
+    &__text{
+        padding-top: 25vh;
+
+        @include mv ( $media: 76em ){
+            padding: initial;
+        }
+        @include mv( ) {
+            z-index: 1;
+        }
+
+    }
+    &__text--section-services{
+
+    }
+    &__extra{
+        color: white;
+        font-family: 'Walsheim';
+        font-size: 14px;
+        margin-bottom: 40px;
+        letter-spacing: 2px;
+
+        &--section-services{
+            color: #082c4c;
+        }
+    }
+    &__number{
+    
+        opacity: 0.5;
+        display: block;
+    }
+    &__title{
+        font-size: 100px;
+        font-family: 'Knockout';
+        font-weight: 300;
+        color: white;
+        line-height: 80px;    
+        margin-bottom: 24px;
+
+        &--section-dailybot{
+            width: 390px;
+        }
+        &--section-services{
+            width: 310px;
+            color: #082c4c;
+        }
+        &--section-products{
+            width: 310px;
+        }
+
+        @include mv( ) {
+            width: 17rem;
+            font-size: 3.5rem;
+            line-height: 3rem;
+            // background: red;
+        }
+    }
+    &__subtitle{
+        width: 74%;
+        /* background-color: red; */
+        font-size: 20px;
+        font-family: 'Walsheim-regular';
+        font-weight: 300;    
+        color: white;
+        margin-bottom: 24px;
+
+        &--section-services{
+            color: #082c4c;
+        }
+        @include mv( ) {
+            // background: lightgreen;
+            width: 16rem;
+        }
+           
+    }
+    &__button{
+        border: 1px solid rgba(241,245,247,0.4);
+        padding: 26px 39px;
+        font-family: 'Walsheim-regular';
+        display: inline-block;
+        margin-top: 40px;
+    
+        &--section-services{
+            border-color: rgba(37,181,233,0.4);
+            color: #25b5e9;
+            font-family: 'Walsheim';
+        }
+        @include mv( ) {
+            width: 14rem;
+        }
+    }
+    &__image-wrapper{
+        position: absolute;
+        top: 25%;
+        left: 50%;
+        pointer-events: none;
+
+        @include mv ( $media: 76em ){
+            width: 85%;
+            top: 10%;
+            left: 72%;
+        }
+
+        &--section-services{
+            width: 32%;
+            top: 10%;
+            left: 16%;
+
+            @include mv ( $media: 76em ){
+            width: 100%;
+            height: 90%;
+            top: 10%;
+            left: 52%;
+            }
+
+            @include mv( ) {
+                width: 40rem!important;
+                top: 10%!important;
+            }
+ 
+        }
+        &--section-products{
+            top: 23%;
+
+            @include mv ( $media: 76em ){
+                
+                left: 64%;
+                
+            }
+            @include mv( ) {
+                width: 40rem!important;
+                height: 85%;
+                top: 15%!important;
+                left: 30%!important;
+                
+            }
+        }
+        @include mv( ) {
+            width: 100%;
+            top: 0%;
+            left: 50%;
+        }
+        
+    }
+    &__image--section-dailybot{
+        width: 80%;
+        position: absolute;
+    }
+    &__image--section-services{
+        width: 100%;
+        position: absolute;
+    }
+    &__image--section-products{
+        width: 100%;
+        position: absolute;
+    }
+    &__image--desktop{
+        @include mv ( $media: 76em ){
+            display: none;
+        }
+    }
+    &__image--responsive{
+        display: none;
+
+        @include mv ( $media: 76em ){
+            display: block;
+        }
+        @include mv( ) {
+            width: 100%;
+        }
+    }
+}
+.section-dailybot, .section-services, .section-products{
+    width: 100%;
+    min-height: 100vh;    
+    position: relative;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding-top: 300px;
+    padding-bottom: 400px;
+
+    @include mv ( $media: 76em ){
+        padding: 0;
+        overflow: hidden;
+    }
+    @include mv( ) {
+        min-height: 80vh;
+        
+    }
+
+    
+}
+.section-dailybot{
+    @include mv ( $media: 76em ){
+        background: #ec3856;
+    }
+
+}
+.section-services{
+    @include mv ( $media: 76em ){
+        background: #f1f5f7;
+    }
+    
+
+}
+.section-products{
+    padding-top: 500px;
+
+    @include mv ( $media: 76em ){
+        padding: 0;
+        background: #25b5e9;
+    }
+
+
+}
+.newsletter{
+    width: 100%;
+    height: 150px;
+    background: #072744;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    &__container{
+        width: 57.4%;
+        height: 70px;
+        // background: lightpink;
+
+        @include mv( $media:76em ) {
+            width: 64%;
+            height: auto;
+        }
+        @include mv ( ){
+            width: 70%;
+        }
+    }
+    &__form{
+        width: 100%;
+        height: 100%;
+        display: flex;
+        justify-content: space-between;
+
+        @include mv( $media:76em ) {
+            // background: yellow;
+            height: auto;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            gap: 2rem;
+        }
+    }
+    &__email{
+        width: 60%;
+        height: 100%;    
+        font-size: 36px;
+        color: white;
+
+        @include mv( $media:76em ) {
+            // background: yellow;
+            width: 80%;
+            text-align: center;
+        }
+        @include mv ( ){
+            width: 100%;
+        }
+        
+    
+    }
+    &__submit{
+        width: 14%;
+        height: 100%;
+        border: 1px solid rgba(241,245,247,0.4);   
+        cursor: pointer;
+
+        @include mv( $media:76em ) {
+            // background: yellow;
+            width: fit-content;
+            padding: 1.7rem 2.5rem;
+        }
+        @include mv ( ){
+            font-size: .7rem;
+            padding: 1.5rem 3rem;
+        }
+    
+    }
+    &__email::placeholder{
+        color: rgba(241,245,247,0.4);
+        font-size: 36px;
+
+        @include mv( $media:76em ) {
+            // background: yellow;
+            font-size: 30px;
+        }
+        @include mv ( ){
+            font-size: 1.2rem;
+        }
+    }
+    @include mv( $media:76em ) {
+        height: 300px;
+    }
+    @include mv ( ){
+        height: 200px;
+    }
+    
+}
+.footer{
+
+    $footer: &;
+    
+    background: #082C4C;
+    display: flex;
+    justify-content: center;
+    &__container{
+        width: 57.4%;
+        height: inherit;
+        /* background: salmon; */
+
+        @include mv( $media:76em ) {
+            width: 80%;
+        }
+        @include mv ( ){
+            width: 90%;
+        }
+        
+    }
+    &__content{
+        width: 100%;
+        display: flex;
+        justify-content: space-between;
+        border-bottom: 1px solid rgba(255,255,255,0.2);
+    }
+    &__column{
+        width: calc(90%/3);
+        height: 100%;
+        // float: left;
+        text-align: center;
+        padding: 74px 0;
+
+        &--contact{
+            width: 30%;
+            height: inherit;
+            display: flex;
+            justify-content: space-around;
+            /* background-color: salmon; */
+            padding: 30px 0 140px;
+            
+            @include mv( $media:76em ) {
+                padding: 75px 0;
+            }
+            @include mv ( ){
+                padding: 50px 0;
+            }
+
+            
+        }
+        &--contact:first-child{
+            @include mv( $media:76em ) {
+                order: 2;
+            }
+        }
+        &--contact:last-child{
+            @include mv( $media:76em ) {
+                order: 1;
+            }
+        }
+        @include mv( $media:76em ) {
+            width: 100%;
+        }
+        
+    }
+    &__text{
+        color: #f1f5f7;
+        font-size: 20px;
+        font-family: 'Walsheim';
+        margin-bottom: 10px;
+
+        &--subt{
+            font-size: 14px;
+            opacity: 0.3;
+            font-family: 'Walsheim';
+            letter-spacing: 2px;
+        }
+        &--find{
+            text-align: left;
+        }
+        &--contact{
+            width: 100%;
+            /* background: black; */
+            font-size: 14px;
+            opacity: 0.4;
+            letter-spacing: 2px;
+        }
+        @include mv ( ){
+            margin-bottom: initial;
+            font-size: 1rem;
+        }
+    }
+    &__text-wrapper{
+        
+        @include mv ( $media: 76em ){
+
+            flex-direction: column;
+            
+            #{$footer}__column{
+                padding: 20px 0px 0px 0;
+            }
+            #{$footer}__column:first-child{
+                padding: 60px 0px 0px 0;
+            }
+            #{$footer}__column:last-child{
+                padding: 20px 0px 60px 0;
+            }
+        }
+    }
+    &__link{
+        font-family: 'Knockout';
+        font-size: 100px;
+        
+        &--find{
+            font-size: 60px;
+            letter-spacing: 0;
+            line-height: 52px;
+            text-align: left;
+
+            @include mv ( $media: 76em ){
+                line-height: 60px;
+            }
+        }
+        &--rrss{
+            border: 1px solid rgba(241,245,247,0.4);
+            /* padding: 16px; */
+            font-size: 22px;
+            line-height: 50px;
+            text-align: center;
+            
+            @include mv ( $media: 76em ){
+                padding: .5rem 1.3em;
+            }
+            @include mv ( ){
+                padding: .1rem 1rem;
+                font-size: 1.2rem!important;
+            }
+        }
+        &--contact{
+            color: white;
+            font-size: 14px;
+            font-family: 'Walsheim';
+
+            @include mv ( ){
+                font-size: .8rem!important;
+            }
+        }
+        @include mv ( ){
+            font-size: 4rem;
+        }
+    }
+    &__clock{
+        width: 100%;
+        display: flex;
+        
+        justify-content: space-between;
+
+        #{$footer}__column{
+            @include mv ( ){
+                width: initial;
+            }
+        }
+    }
+    &__circle{
+        width: 164px;
+        height: 164px;
+        border-radius: 50%;
+        border: 1px solid rgba(241,245,247,0.2);
+        position: relative;
+
+        &:after{
+            content: '';
+            position: absolute;
+            top: 48%;
+            left: 48%;
+            width: 8px;
+            height: 8px;
+            /* padding-bottom: 8px; */
+            border-radius: 50%;
+            background: white;
+            z-index: 100;
+        }
+        @include mv ( ){
+            width: 100%;
+            height: 100px;
+        }
+    }
+    &__circle-wrapper{
+        width: 100%;
+        display: flex;
+        justify-content: center;
+        align-items: center;    
+        margin-bottom: 30px;
+        
+    }
+    &__hour{
+        position: absolute;
+        border-left: 1px solid #25b5e9;
+        border-right: 1px solid #25b5e9;
+        background: #25b5e9;
+        height: 30%;
+        top: 50%;
+        left: 50%;
+        transform-origin: 50% 0;    
+        z-index: 2;
+
+        &--mad{
+            animation: animateHourMAD 86400s linear infinite;
+        }
+        &--ny{
+            animation: animateHourNY 86400s linear infinite;
+        }
+        &--mde{
+            animation: animateHourMDE 86400s linear infinite;
+        }
+    }
+    &__minute{
+        position: absolute;
+        background: white;
+        border-left: 1px solid white;
+        border-right: 1px solid white;
+        height: 57%;
+        top: 50%;
+        left: 50%;
+        transform-origin: 50% 0;
+        animation: animateMin 3600s linear infinite;
+        border-radius: 0 0 1px 1px;
+    }
+    &__minute::before{
+        content: '';
+        height: 20%;
+        background: white;
+        position: absolute;
+        top: -20%;
+        left: calc(50% - 1px);
+        border-left: 1px solid white;
+        border-right: 1px solid white;
+        border-radius: 0 0 1px 1px;
+    }
+    &__second{
+        height: 40%;
+        top: 50%;
+        left: 50%;
+        position: absolute;
+        border-left: 1px solid red;
+        border-right: 1px solid red;
+        transform-origin:  50% 0;
+        animation: animateSeg 60s linear infinite;
+
+        @include mv( $media:76em ) {
+            display: none;
+        }
+    }
+    &__tick-wrapper{
+        #{$footer}__tick1{
+            transform: rotate(10deg) translateX(70px);
+            @include mv ( ){
+                transform: rotate(10deg) translateX(40px);
+            }
+        }
+        #{$footer}__tick2{
+            transform: rotate(16deg) translateX(70px);
+            @include mv ( ){
+                transform: rotate(16deg) translateX(40px);
+            }
+        }
+        #{$footer}__tick3{
+            transform: rotate(22deg) translateX(70px);
+            @include mv ( ){
+                transform: rotate(22deg) translateX(40px);
+            }
+        }
+        
+        #{$footer}__tick4{
+            transform: rotate(28deg) translateX(70px);
+            background-color: rgba(241,245,247,0.2);
+            @include mv ( ){
+                transform: rotate(28deg) translateX(40px);
+                background-color: rgba(241,245,247,0.2);
+            }
+        }
+        
+        #{$footer}__tick5{
+            transform: rotate(34deg) translateX(70px);
+            @include mv ( ){
+                transform: rotate(34deg) translateX(40px);
+            }
+        }
+        
+        #{$footer}__tick6{
+            transform: rotate(40deg) translateX(70px);
+            @include mv ( ){
+                transform: rotate(40deg) translateX(40px);
+            }
+        }
+        
+        #{$footer}__tick7{
+            transform: rotate(46deg) translateX(70px);
+            @include mv ( ){
+                transform: rotate(46deg) translateX(40px);
+            }
+        }
+        
+        #{$footer}__tick8{
+            transform: rotate(52deg) translateX(70px);
+            @include mv ( ){
+                transform: rotate(52deg) translateX(40px);
+            }
+        }
+        #{$footer}__tick9{
+            transform: rotate(58deg) translateX(70px);
+            background: rgba(241,245,247,0.2);
+            @include mv ( ){
+                transform: rotate(58deg) translateX(40px);
+                background: rgba(241,245,247,0.2);
+            }
+        }
+        #t999{
+            transform: rotate(200deg);
+            background: red;
+        }
+        #{$footer}__tick10{
+            transform: rotate(64deg) translateX(70px);
+            @include mv ( ){
+                transform: rotate(64deg) translateX(40px);
+            }
+        }
+        #{$footer}__tick11{
+            transform: rotate(70deg) translateX(70px);
+            @include mv ( ){
+                transform: rotate(70deg) translateX(40px);
+            }
+        }
+        #{$footer}__tick12{
+            transform: rotate(76deg) translateX(70px);
+            @include mv ( ){
+                transform: rotate(76deg) translateX(40px);
+            }
+        }
+        #{$footer}__tick13{
+            transform: rotate(82deg) translateX(70px);
+            @include mv ( ){
+                transform: rotate(82deg) translateX(40px);
+            }
+        }
+        #{$footer}__tick14{
+            transform: rotate(88deg) translateX(70px);
+            background: rgba(241,245,247,0.2);
+            @include mv ( ){
+                transform: rotate(88deg) translateX(40px);
+                background: rgba(241,245,247,0.2);
+            }
+        }
+        #{$footer}__tick15{
+            transform: rotate(94deg) translateX(70px);
+            @include mv ( ){
+                transform: rotate(94deg) translateX(40px);
+            }
+            
+        }
+        #{$footer}__tick16{
+            transform: rotate(100deg) translateX(70px);
+            @include mv ( ){
+                transform: rotate(100deg) translateX(40px);
+            }
+        }
+        #{$footer}__tick17{
+            transform: rotate(106deg) translateX(70px);
+            @include mv ( ){
+                transform: rotate(106deg) translateX(40px);
+            }
+        }
+        #{$footer}__tick18{
+            transform: rotate(112deg) translateX(70px);
+            @include mv ( ){
+                transform: rotate(112deg) translateX(40px);
+            }
+        }
+        #{$footer}__tick19{
+            transform: rotate(118deg) translateX(70px);
+            background: rgba(241,245,247,0.2);
+            @include mv ( ){
+                transform: rotate(118deg) translateX(40px);
+                background: rgba(241,245,247,0.2);
+            }
+        }
+        #{$footer}__tick20{
+            transform: rotate(124deg) translateX(70px);
+            @include mv ( ){
+                transform: rotate(124deg) translateX(40px);
+            }
+        }
+        #{$footer}__tick21{
+            transform: rotate(130deg) translateX(70px);
+            @include mv ( ){
+                transform: rotate(130deg) translateX(40px);
+            }
+        }
+        #{$footer}__tick22{
+            transform: rotate(136deg) translateX(70px);
+            @include mv ( ){
+                transform: rotate(136deg) translateX(40px);
+            }
+        }
+        #{$footer}__tick23{
+            transform: rotate(142deg) translateX(70px);
+            @include mv ( ){
+                transform: rotate(142deg) translateX(40px);
+            }
+        }
+        #{$footer}__tick24{
+            transform: rotate(148deg) translateX(70px);
+            background: rgba(241,245,247,0.2);
+            @include mv ( ){
+                transform: rotate(148deg) translateX(40px);
+                background: rgba(241,245,247,0.2);
+            }
+        }
+        #{$footer}__tick25{
+            transform: rotate(154deg) translateX(70px);
+            @include mv ( ){
+                transform: rotate(154deg) translateX(40px);
+            }
+        }
+        #{$footer}__tick26{
+            transform: rotate(160deg) translateX(70px);
+            @include mv ( ){
+                transform: rotate(160deg) translateX(40px);
+            }
+        }
+        #{$footer}__tick27{
+            transform: rotate(166deg) translateX(70px);
+            @include mv ( ){
+                transform: rotate(166deg) translateX(40px);
+            }
+        }
+        #{$footer}__tick28{
+            transform: rotate(172deg) translateX(70px);
+            @include mv ( ){
+                transform: rotate(172deg) translateX(40px);
+            }
+            
+        }
+        #{$footer}__tick29{
+            transform: rotate(178deg) translateX(70px);
+            background: rgba(241,245,247,0.2);
+            @include mv ( ){
+                transform: rotate(178deg) translateX(40px);
+                background: rgba(241,245,247,0.2);
+            }
+        }
+        #{$footer}__tick30{
+            transform: rotate(184deg) translateX(70px);
+            @include mv ( ){
+                transform: rotate(184deg) translateX(40px);
+            }
+        }
+        #{$footer}__tick31{
+            transform: rotate(190deg) translateX(70px);
+            @include mv ( ){
+                transform: rotate(190deg) translateX(40px);
+            }
+        }
+        #{$footer}__tick32{
+            transform: rotate(196deg) translateX(70px);
+            @include mv ( ){
+                transform: rotate(196deg) translateX(40px);
+            }
+        }
+        #{$footer}__tick33{
+            transform: rotate(202deg) translateX(70px);
+            @include mv ( ){
+                transform: rotate(202deg) translateX(40px);
+            }
+        }
+        #{$footer}__tick34{
+            transform: rotate(208deg) translateX(70px);
+            background: rgba(241,245,247,0.2);
+            @include mv ( ){
+                transform: rotate(208deg) translateX(40px);
+                background: rgba(241,245,247,0.2);
+            }
+        }
+        #{$footer}__tick35{
+            transform: rotate(214deg) translateX(70px);
+            @include mv ( ){
+                transform: rotate(214deg) translateX(40px);
+            }
+        }
+        #{$footer}__tick36{
+            transform: rotate(220deg) translateX(70px);
+            @include mv ( ){
+                transform: rotate(220deg) translateX(40px);
+            }
+        }
+        #{$footer}__tick37{
+            transform: rotate(226deg) translateX(70px);
+            @include mv ( ){
+                transform: rotate(226deg) translateX(40px);
+            }
+        }
+        #{$footer}__tick38{
+            transform: rotate(232deg) translateX(70px);
+            @include mv ( ){
+                transform: rotate(232deg) translateX(40px);
+            }
+        }
+        #{$footer}__tick39{
+            transform: rotate(238deg) translateX(70px);
+            background: rgba(241,245,247,0.2);
+            @include mv ( ){
+                transform: rotate(238deg) translateX(40px);
+                background: rgba(241,245,247,0.2);
+            }
+        }
+        #{$footer}__tick40{
+            transform: rotate(244deg) translateX(70px);
+            @include mv ( ){
+                transform: rotate(244deg) translateX(40px);
+            }
+        }
+        #{$footer}__tick41{
+            transform: rotate(250deg) translateX(70px);
+            @include mv ( ){
+                transform: rotate(250deg) translateX(40px);
+            }
+        }
+        #{$footer}__tick42{
+            transform: rotate(256deg) translateX(70px);
+            @include mv ( ){
+                transform: rotate(256deg) translateX(40px);
+            }
+            
+        }
+        #{$footer}__tick43{
+            transform: rotate(262deg) translateX(70px);
+            @include mv ( ){
+                transform: rotate(262deg) translateX(40px);
+            }
+        }
+        #{$footer}__tick44{
+            transform: rotate(268deg) translateX(70px);
+            background: rgba(241,245,247,0.2);
+            @include mv ( ){
+                transform: rotate(268deg) translateX(40px);
+                background: rgba(241,245,247,0.2);
+            }
+        }
+        #{$footer}__tick45{
+            transform: rotate(274deg) translateX(70px);
+            @include mv ( ){
+                transform: rotate(274deg) translateX(40px);
+            }
+            
+        }
+        #{$footer}__tick46{
+            transform: rotate(280deg) translateX(70px);
+            @include mv ( ){
+                transform: rotate(280deg) translateX(40px);
+            }
+        }
+        #{$footer}__tick47{
+            transform: rotate(286deg) translateX(70px);
+            @include mv ( ){
+                transform: rotate(286deg) translateX(40px);
+            }
+        }
+        #{$footer}__tick48{
+            transform: rotate(292deg) translateX(70px);
+            @include mv ( ){
+                transform: rotate(292deg) translateX(40px);
+            }
+        }
+        #{$footer}__tick49{
+            transform: rotate(298deg) translateX(70px);
+            background: rgba(241,245,247,0.2);
+            @include mv ( ){
+                transform: rotate(298deg) translateX(40px);
+                background: rgba(241,245,247,0.2);
+            }
+        }
+        #{$footer}__tick50{
+            transform: rotate(304deg) translateX(70px);
+            @include mv ( ){
+                transform: rotate(304deg) translateX(40px);
+            }
+        }
+        #{$footer}__tick51{
+            transform: rotate(310deg) translateX(70px);
+            @include mv ( ){
+                transform: rotate(310deg) translateX(40px);
+            }
+        }
+        #{$footer}__tick52{
+            transform: rotate(316deg) translateX(70px);
+            @include mv ( ){
+                transform: rotate(316deg) translateX(40px);
+            }
+        }
+        #{$footer}__tick53{
+            transform: rotate(322deg) translateX(70px);
+            @include mv ( ){
+                transform: rotate(322deg) translateX(40px);
+            }
+        }
+        #{$footer}__tick54{
+            transform: rotate(328deg) translateX(70px);
+            background: rgba(241,245,247,0.2);
+            @include mv ( ){
+                transform: rotate(328deg) translateX(40px);
+                background: rgba(241,245,247,0.2);
+            }
+        }
+        #{$footer}__tick55{
+            transform: rotate(334deg) translateX(70px);
+            @include mv ( ){
+                transform: rotate(334deg) translateX(40px);
+            }
+        }
+        #{$footer}__tick56{
+            transform: rotate(340deg) translateX(70px);
+            @include mv ( ){
+                transform: rotate(340deg) translateX(40px);
+            }
+        }
+        #{$footer}__tick57{
+            transform: rotate(346deg) translateX(70px);
+            @include mv ( ){
+                transform: rotate(346deg) translateX(40px);
+            }
+            
+        }
+        #{$footer}__tick58{
+            transform: rotate(352deg) translateX(70px);
+            @include mv ( ){
+                transform: rotate(352deg) translateX(40px);
+            }
+            
+        }
+        #{$footer}__tick59{
+            transform: rotate(358deg) translateX(70px);
+            background: rgba(241,245,247,0.2);
+            @include mv ( ){
+                transform: rotate(358deg) translateX(40px);
+                background: rgba(241,245,247,0.2);
+            }
+        }
+        #{$footer}__tick60{
+            transform: rotate(364deg) translateX(70px);
+            @include mv ( ){
+                transform: rotate(364deg) translateX(40px);
+            }
+            
+        }
+    }
+    &__ticks{
+        width: 4px;
+        height: 4px;
+        position: absolute;
+        top: 50%;
+
+        @include mv ( ){
+            width: 2px;
+            height: 2px;
+        }
+        
+    }
+    &__title{
+        font-size: 60px;
+        font-weight: 300;
+        color: #f1f5f7;
+        font-family: 'Knockout';
+    }
+    &__list{
+        width: 66%;
+        height: 50px;
+        margin-top: 40px;
+        display: flex;
+        justify-content: space-between;
+
+        &--contact{
+            width: 100%;
+            /* background: yellow; */
+            margin-top: initial;
+
+            @include mv ( $media: 76em){
+                gap: 40px;
+                flex-direction: column;
+                
+            }
+            @include mv ( ){
+                height: initial;
+                gap: 20px;
+            }
+        }
+    }
+    &__item{
+
+        // float: left;
+        width: 22%;
+        height: 100%;
+
+        &--contact{
+            width: 50%;
+        }
+
+        @include mv ( $media: 76em){
+            width: initial;
+            
+        }
+        
+    }
+    &__rrss{
+        @include mv ( $media: 76em){
+            flex-direction: column;
+        }
+        #{$footer}__column{
+            @include mv ( $media: 76em){
+                display: flex;
+                flex-direction: column;
+                align-items: center;
+                justify-content: center;
+            }
+            @include mv ( ){
+                padding: 50px 0 30px 0;
+            }
+        }
+    }
+    &__contact{
+
+        @include mv ( $media: 76em){
+            flex-direction: column;
+        }
+        
+    }
+    &__content:last-child{
+        border-bottom: none;
+    }
+}
+@keyframes animateHourMAD {
+    from{ transform: rotate(var(--start-rotate-hourMAD));}
+    to{ transform: rotate(var(--end-rotate-hourMAD));}
+}
+@keyframes animateHourNY {
+    from{ transform: rotate(var(--start-rotate-hourNY));}
+    to{ transform: rotate(var(--end-rotate-hourNY));}
+}
+@keyframes animateHourMDE {
+    from{ transform: rotate(var(--start-rotate-hourMDE));}
+    to{ transform: rotate(var(--end-rotate-hourMDE));}
+}
+@keyframes animateMin {
+    from{ transform: rotate(var(--start-rotate-min));}
+    to{ transform: rotate(var(--end-rotate-min));}
+}
+@keyframes animateSeg {
+    from{ transform: rotate(var(--start-rotate-seg));}
+    to{ transform: rotate(var(--end-rotate-seg));}
+}
+
+
+#particles-js{
+    width: 100%;
+    height: 100%;
+    position: fixed;
+    /* background-color: #b61924; */
+    /* background-image: url(''); */
+    background-color: transparent;
+    background-size: cover;
+    background-position: 50% 50%;
+    background-repeat: no-repeat;
+    opacity: 0;
+
+    @include mv( $media:76em ) {
+        display: none;
+    }
+  }
+  #particles2-js{
+    width: 100%;
+    height: 100%;
+    position: fixed;
+    /* background-color: #b61924; */
+    /* background-image: url(''); */
+    background-color: transparent;
+    background-size: cover;
+    background-position: 50% 50%;
+    background-repeat: no-repeat;
+    opacity: 0;
+
+    @include mv( $media:76em ) {
+        display: none;
+    }
+  }
+.show{
+    opacity: 1!important;
+}
+.no-show{
+    opacity: 0;
+}
+.overflow {
+    overflow: hidden;
+}
